@@ -22,7 +22,5 @@ public class BasketMovementScript : MonoBehaviour
         {
             transform.Translate(xMovement, 0f, 0f);
         }
-        //float horizontalInput = Input.GetAxis("Horizontal");
-        //transform.position = transform.position + new Vector3(horizontalInput * speed * Time.deltaTime, 0, 0);
     }
 }
