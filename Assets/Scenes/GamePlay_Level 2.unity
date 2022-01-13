@@ -383,6 +383,9 @@ MonoBehaviour:
   scoreText: {fileID: 339909713}
   score: 0
   timerText: {fileID: 1978803032}
+  audioClipArr:
+  - {fileID: 8300000, guid: 7a0a25d3d0515a4419b5b31b438863db, type: 3}
+  - {fileID: 8300000, guid: f0814ea56895e8b418eca1116d26a0d1, type: 3}
 --- !u!65 &749641440
 BoxCollider:
   m_ObjectHideFlags: 0
