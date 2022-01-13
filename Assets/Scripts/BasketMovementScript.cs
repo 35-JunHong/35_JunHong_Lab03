@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BasketMovementScript : MonoBehaviour
 {
@@ -21,6 +22,23 @@ public class BasketMovementScript : MonoBehaviour
         if (transform.position.x + xMovement > minXPos && transform.position.x + xMovement < maxXPos)
         {
             transform.Translate(xMovement, 0f, 0f);
+        }
+        
+        //float horizontalInput = Input.GetAxis("Horizontal");
+        //transform.position = transform.position + new Vector3(horizontalInput * speed * Time.deltaTime, 0, 0);
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        //collision with unhealthy food
+        if(collision.gameObject.tag == "Unhealthy")
+        {
+            Destroy(collision.collider.gameObject);
+        }
+        //collision with healthy food
+        if (collision.gameObject.tag == "Healthy")
+        {
+            Destroy(collision.collider.gameObject);
         }
     }
 }
