@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class BasketMovementScript : MonoBehaviour
 {
@@ -29,6 +30,16 @@ public class BasketMovementScript : MonoBehaviour
         
         //float horizontalInput = Input.GetAxis("Horizontal");
         //transform.position = transform.position + new Vector3(horizontalInput * speed * Time.deltaTime, 0, 0);
+
+        if(score>=100)
+        {
+            SceneManager.LoadScene("GameWinScene");
+        }
+
+        if(score<=-10)
+        {
+            SceneManager.LoadScene("GameLoseScene");
+        }
     }
 
     void OnCollisionEnter(Collision collision)
@@ -36,8 +47,8 @@ public class BasketMovementScript : MonoBehaviour
         //collision with unhealthy food
         if(collision.gameObject.tag == "Unhealthy")
         {
-            //score -= 10;
-            //scoreText.text = "Score: " + score;
+            score -= 10;
+            scoreText.text = "Score: " + score;
             Destroy(collision.collider.gameObject);
         }
         //collision with healthy food
