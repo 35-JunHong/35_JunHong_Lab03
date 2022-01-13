@@ -35,11 +35,6 @@ public class BasketMovementScript : MonoBehaviour
         {
             SceneManager.LoadScene("GameWinScene");
         }
-
-        if(score<=-10)
-        {
-            SceneManager.LoadScene("GameLoseScene");
-        }
     }
 
     void OnCollisionEnter(Collision collision)
@@ -47,9 +42,8 @@ public class BasketMovementScript : MonoBehaviour
         //collision with unhealthy food
         if(collision.gameObject.tag == "Unhealthy")
         {
-            score -= 10;
-            scoreText.text = "Score: " + score;
             Destroy(collision.collider.gameObject);
+            SceneManager.LoadScene("GameLoseScene");
         }
         //collision with healthy food
         if (collision.gameObject.tag == "Healthy")
