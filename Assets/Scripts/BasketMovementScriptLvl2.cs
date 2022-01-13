@@ -4,12 +4,15 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class BasketMovementScript : MonoBehaviour
+public class BasketMovementScriptLvl2 : MonoBehaviour
 {
     public float speed;
 
     public Text scoreText;
     public int score;
+
+    float timeLeft = 30f;
+    public Text timerText;
 
     // Start is called before the first frame update
     void Start()
@@ -27,20 +30,27 @@ public class BasketMovementScript : MonoBehaviour
         {
             transform.Translate(xMovement, 0f, 0f);
         }
-        
+
         //float horizontalInput = Input.GetAxis("Horizontal");
         //transform.position = transform.position + new Vector3(horizontalInput * speed * Time.deltaTime, 0, 0);
 
-        if(score>=100)
+        if (score >= 100)
         {
-            SceneManager.LoadScene("GamePlay_Level 2");
+            SceneManager.LoadScene("GameWinScene");
+        }
+
+        timeLeft -= Time.deltaTime;
+        timerText.text = "Timer: " + timeLeft.ToString("0");
+        if (timeLeft < 0)
+        {
+            SceneManager.LoadScene("GameLoseScene");
         }
     }
 
     void OnCollisionEnter(Collision collision)
     {
         //collision with unhealthy food
-        if(collision.gameObject.tag == "Unhealthy")
+        if (collision.gameObject.tag == "Unhealthy")
         {
             Destroy(collision.collider.gameObject);
             SceneManager.LoadScene("GameLoseScene");
