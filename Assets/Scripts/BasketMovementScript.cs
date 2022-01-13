@@ -6,11 +6,14 @@ using UnityEngine.UI;
 public class BasketMovementScript : MonoBehaviour
 {
     public float speed;
-   
+
+    public Text scoreText;
+    public int score;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -33,11 +36,15 @@ public class BasketMovementScript : MonoBehaviour
         //collision with unhealthy food
         if(collision.gameObject.tag == "Unhealthy")
         {
+            //score -= 10;
+            //scoreText.text = "Score: " + score;
             Destroy(collision.collider.gameObject);
         }
         //collision with healthy food
         if (collision.gameObject.tag == "Healthy")
         {
+            score += 10;
+            scoreText.text = "Score: " + score;
             Destroy(collision.collider.gameObject);
         }
     }
